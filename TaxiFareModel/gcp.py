@@ -17,7 +17,7 @@ def get_credentials():
     return creds_gcp
 
 
-def storage_upload(model_version=MODEL_VERSION, bucket=BUCKET_NAME, rm=False):
+def storage_upload(model_version=MODEL_VERSION, bucket=BUCKET_NAME, rm=True):
     client = storage.Client().bucket(bucket)
 
     storage_location = 'models/{}/versions/{}/{}'.format(
