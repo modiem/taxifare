@@ -22,10 +22,10 @@ class TimeFeaturesEncoder(BaseEstimator, TransformerMixin):
         assert isinstance(X, pd.DataFrame)
         X.index = pd.to_datetime(X[self.time_column])
         X.index = X.index.tz_convert(self.time_zone_name)
-        X["dow"] = X.index.weekday
-        X["hour"] = X.index.hour
-        X["month"] = X.index.month
-        X["year"] = X.index.year
+        X.loc[:, "dow"] = X.index.weekday
+        X.loc[:, "hour"] = X.index.hour
+        X.loc[:, "month"] = X.index.month
+        X.loc[:, "year"] = X.index.year
         return X[["dow", "hour", "month", "year"]].reset_index(drop=True)
 
     def fit(self, X, y=None):

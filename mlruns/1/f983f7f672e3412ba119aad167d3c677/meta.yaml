@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/moyang/code/modiem/taxifare/mlruns/1/f983f7f672e3412ba119aad167d3c677/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: f983f7f672e3412ba119aad167d3c677
+run_uuid: f983f7f672e3412ba119aad167d3c677
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1612110760620
+status: 1
+tags: []
+user_id: unknown

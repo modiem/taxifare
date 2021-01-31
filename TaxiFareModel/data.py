@@ -18,10 +18,9 @@ def get_data(nrows=10000, local=False, optimize=False, **kwargs):
     # Add Client() here
     client = storage.Client()
     if local:
-        path = "~/Documents/projets/WAGON/taxi-fare-train.csv"
+        path = "/Users/moyang/code/modiem/taxifare/data/train.csv"
     else:
-        #path = "gs://{}/{}".format(BUCKET_NAME, BUCKET_TRAIN_DATA_PATH)
-        path = "s3://wagon-public-datasets/taxi-fare-train.csv"
+        path = "gs://{}/{}".format(BUCKET_NAME, BUCKET_TRAIN_DATA_PATH)
     if optimize:
         cols = infer_dtypes(path)
         cols = {k: v for k, v in cols.items() if "latitude" not in k and "longitude" not in k}

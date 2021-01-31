@@ -25,8 +25,6 @@ from sklearn.preprocessing import OneHotEncoder, RobustScaler
 from termcolor import colored
 from xgboost import XGBRegressor
 
-# Mlflow wagon server
-MLFLOW_URI = "https://mlflow.lewagon.co/"
 
 
 class Trainer(object):
@@ -52,8 +50,8 @@ class Trainer(object):
         self.grid = kwargs.get("gridsearch", False)  # apply gridsearch if True
         self.local = kwargs.get("local", True)  # if True training is done locally
         self.optimize = kwargs.get("optimize", False)  # Optimizes size of Training Data if set to True
-        self.mlflow = kwargs.get("mlflow", False)  # if True log info to nlflow
-        self.upload = kwargs.get("upload", False)  # if True log info to nlflow
+        self.mlflow = kwargs.get("mlflow", False)  # if True log info to mlflow
+        self.upload = kwargs.get("upload", False)  # if True log info to mlflow
         self.experiment_name = kwargs.get("experiment_name", self.EXPERIMENT_NAME)  # cf doc above
         self.model_params = None  # for
         self.X_train = X
@@ -91,6 +89,7 @@ class Trainer(object):
                                  }
         else:
             model = Lasso()
+        self.estimator = estimator
         estimator_params = self.kwargs.get("estimator_params", {})
         self.mlflow_log_param("estimator", estimator)
         model.set_params(**estimator_params)
@@ -185,16 +184,15 @@ class Trainer(object):
     def save_model(self):
         """Save the model into a .joblib and upload it on Google Storage /models folder
         HINTS : use sklearn.joblib (or jbolib) libraries and google-cloud-storage"""
-        joblib.dump(self.pipeline, 'model.joblib')
-        print(colored("model.joblib saved locally", "green"))
 
+        joblib.dump(self.pipeline, f'model.joblib')
+        print(colored("model.joblib saved locally", "green"))
         if self.upload:
             storage_upload(model_version=MODEL_VERSION)
 
     ### MLFlow methods
     @memoized_property
     def mlflow_client(self):
-        mlflow.set_tracking_uri(MLFLOW_URI)
         return MlflowClient()
 
     @memoized_property
@@ -239,13 +237,13 @@ class Trainer(object):
 if __name__ == "__main__":
     warnings.simplefilter(action='ignore', category=FutureWarning)
     # Get and clean data
-    experiment = "taxifare_test_jean"
-    params = dict(nrows=100000,
+    experiment = "taxifare"
+    params = dict(nrows=10000,
                   upload=True,
                   local=False,  # set to False to get data from GCP (Storage or BigQuery)
                   gridsearch=False,
                   optimize=False,
-                  estimator="xgboost",
+                  estimator="Lasso",
                   mlflow=True,  # set to True to log params to mlflow
                   experiment_name=experiment)
     print("############   Loading Data   ############")
