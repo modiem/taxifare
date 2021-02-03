@@ -4,6 +4,7 @@ from math import sqrt
 import joblib
 import pandas as pd
 from TaxiFareModel.params import MODEL_NAME, MODEL_VERSION, BUCKET_NAME, BUCKET_TEST_DATA_PATH
+from TaxiFareModel.gcp import download_model
 from google.cloud import storage
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
@@ -30,24 +31,12 @@ class Predictor(object):
             df = pd.read_csv(self.GCP_BUCKET_TEST_PATH, nrows=self.nrows)
         return df
 
-    def download_model(self, model_version=MODEL_VERSION, bucket=BUCKET_NAME, rm=True):
-        client = storage.Client().bucket(bucket)
 
-        storage_location = 'models/{}/versions/{}/{}'.format(
-            MODEL_NAME,
-            model_version,
-            'model.joblib')
-        blob = client.blob(storage_location)
-        blob.download_to_filename('model.joblib')
-        print("=> pipeline downloaded from storage")
-        model = joblib.load('model.joblib')
-        if rm:
-            os.remove('model.joblib')
-        return model
-
-
-    def get_model(self, path_to_joblib):
-        pipeline = joblib.load(path_to_joblib)
+    def get_model(self):
+        if self.local:
+            pipeline = joblib.load(self.PATH_TO_LOCAL_MODEL)
+        else:
+            pipeline = self.download_model()
         return pipeline
 
 
