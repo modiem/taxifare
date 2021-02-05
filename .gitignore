@@ -4,3 +4,4 @@ __pycache__
 mindMap.md
 .DS_Store
 requirements_.txt
+app.py
