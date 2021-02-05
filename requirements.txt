@@ -22,7 +22,6 @@ defusedxml==0.6.0
 docker==4.4.1
 entrypoints==0.3
 fastapi==0.63.0
-Flask==1.1.2
 fsspec==0.8.5
 gcsfs==0.6.0
 gitdb==4.0.5
