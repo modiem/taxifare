@@ -85,6 +85,8 @@ gcp_submit_training:
 #         API COMMANDS
 # ----------------------------------
 APP_NAME=api-wagon
+DOCKER_IMAGE_NAME=taxi-fare-prediction
+
 api:
 	-@python app.py
 
@@ -102,6 +104,13 @@ heroku_set_gcp_env:
 	-@heroku config:set GOOGLE_APPLICATION_CREDENTIALS="$(< /Users/moyang/Documents/gcp_keys/onyx-smoke-297211-c56356e63d48.json)"
 
 heroku_update: deploy_heroku heroku_set_gcp_env
+
+deploy_gcp:
+	gcloud run deploy \
+		--image eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} \
+		--platform managed \
+		--region europe-west1 \
+		--set-env-vars "GOOGLE_APPLICATION_CREDENTIALS=/credentials.json"
 # ----------------------------------
 #    CLEANING COMMAND
 # ----------------------------------
@@ -118,3 +127,4 @@ clean:
 
 run_api:
 	uvicorn api.fast:app --reload  # load web server with code autoreload
+
