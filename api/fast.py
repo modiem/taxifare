@@ -52,9 +52,8 @@ def create_fare(key,
         passenger_count=[int(passenger_count)]))
 
     # get model from GCP
-
     pipeline = download_model()
-    # pipeline = joblib.load('../data/Lasso.joblib')
+    # pipeline = joblib.load('../data/model.joblib')
 
     # make prediction
     results = pipeline.predict(X)

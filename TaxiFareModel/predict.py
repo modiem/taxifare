@@ -11,7 +11,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 class Predictor(object):
 
-    PATH_TO_LOCAL_MODEL = 'data/Lasso.joblib'
+    PATH_TO_LOCAL_MODEL = 'data/model.joblib'
     GCP_BUCKET_TEST_PATH = "gs://{}/{}".format(BUCKET_NAME, BUCKET_TEST_DATA_PATH)  
 
     def __init__(self, **kwargs):
