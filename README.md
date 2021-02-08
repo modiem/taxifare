@@ -13,6 +13,7 @@ kaggle competitions download -c new-york-city-taxi-fare-prediction
  👉 this `model.joblib` contains the whole pipeline (preprocssing + model)
 
 ### API
+
 - receive through route `/predict_fare`, jsons looking like:
 ```python
 input = {"pickup_datetime": 2012-12-03 13:10:00 UTC,
