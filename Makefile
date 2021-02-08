@@ -84,39 +84,23 @@ gcp_submit_training:
 # ----------------------------------
 #         API COMMANDS
 # ----------------------------------
-APP_NAME=api-wagon
-DOCKER_IMAGE_NAME=taxi-fare-prediction
-
-api:
-	-@python app.py
-
-heroku_login:
-	-@heroku login
-
-heroku_create_app:
-	-@heroku create ${APP_NAME}
-
-deploy_heroku:
-	-@git push heroku master
-	-@heroku ps:scale web=1
-
-heroku_set_gcp_env:
-	-@heroku config:set GOOGLE_APPLICATION_CREDENTIALS="$(< /Users/moyang/Documents/gcp_keys/onyx-smoke-297211-c56356e63d48.json)"
-
-heroku_update: deploy_heroku heroku_set_gcp_env
 
 deploy_gcp:
 	gcloud run deploy \
-		--image eu.gcr.io/${PROJECT_ID}/${DOCKER_IMAGE_NAME} \
+		--image eu.gcr.io/taxi-fare-303410/api \
 		--platform managed \
-		--region europe-west1 \
+		--region europe-west4 \
 		--set-env-vars "GOOGLE_APPLICATION_CREDENTIALS=/credentials.json"
+
 # ----------------------------------
 #    CLEANING COMMAND
 # ----------------------------------
 
 clean:
 	@rm -fr */__pycache__
+	@rm -fr __pycache__
+	@rm -fr */.ipynb_checkpoints
+	@rm -fr .ipynb_checkpoints
 	@rm -fr __init__.py
 	@rm -fr build
 	@rm -fr dist
