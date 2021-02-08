@@ -4,7 +4,7 @@ COPY api /api
 COPY TaxiFareModel /TaxiFareModel
 COPY data/model.joblib /model.joblib
 COPY requirements.txt /requirements.txt
-COPY /Users/moyang/Documents/gcp_keys/taxi-fare-60841db7983e.json /credentials.json
+COPY gcp_key/taxi-fare-60841db7983e.json /credentials.json
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
