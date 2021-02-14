@@ -20,7 +20,7 @@ LOCAL_PATH=/Users/moyang/code/modiem/taxifare/data
 PROJECT_ID=taxi-fare-303410
 
 # bucket name
-BUCKET_NAME= my_unsensitive_bucket
+BUCKET_NAME=my_unsensitive_bucket
 
 # bucket directory in which to store the uploaded file (we choose to name this data as a convention)
 BUCKET_FOLDER=data

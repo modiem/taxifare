@@ -6,3 +6,4 @@ mindMap.md
 requirements_.txt
 app.py
 gcp_key
+.ipynb_checkpoints/
