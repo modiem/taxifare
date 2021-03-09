@@ -36,7 +36,7 @@ class Predictor(object):
         if self.local:
             pipeline = joblib.load(self.PATH_TO_LOCAL_MODEL)
         else:
-            pipeline = self.download_model()
+            pipeline = download_model()
         return pipeline
 
 
