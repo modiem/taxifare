@@ -1,7 +1,9 @@
 # Taxifare Prediction
 Deploy a ML API to predict taxifare in New York.
-
-https://predict-taxifare-iwuisdewea-ez.a.run.app/predict_fare/
+[![Front_end][screenshot]][hyperlink]
+ 
+[hyperlink]: https://modiem.herokuapp.com/ 
+[screenshot]: img/Screenshot.png "Screen Shot"
 
 ### Data
 👉Training data came from kaggle compitation "New York City Taxi Fare Prediction"
