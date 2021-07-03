@@ -1,8 +1,8 @@
 # Taxifare Prediction
-Deploy a ML API to predict taxifare in New York.
-[![Front_end][screenshot]][hyperlink]
+Deploy a Machine Learning API to predict taxifare in New York.
+[live demo]: https://modiem.herokuapp.com/ 
  
-[hyperlink]: https://modiem.herokuapp.com/ 
+
 [screenshot]: img/Screenshot.png "Screen Shot"
 
 ### Data
@@ -12,7 +12,7 @@ Deploy a ML API to predict taxifare in New York.
 kaggle competitions download -c new-york-city-taxi-fare-prediction
 ```
 ### Model
- 👉 this `model.joblib` contains the whole pipeline (preprocssing + model)
+ 👉 the `model.joblib` wraps a pipeline that covers both data transformation and model training.
 ``` python
 print(model.named_steps["features"])
 
