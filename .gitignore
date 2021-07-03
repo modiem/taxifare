@@ -5,3 +5,4 @@ __pycache__
 app.py
 gcp_key
 .ipynb_checkpoints/
+notebooks
