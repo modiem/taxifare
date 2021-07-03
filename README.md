@@ -2,7 +2,9 @@
 Deploy a Machine Learning API to predict taxifare in New York.
 [live demo](https://modiem.herokuapp.com/)
  
-![sample][screenshot]
+[![Front_end][screenshot]][hyperlink]
+ 
+[hyperlink]: https://modiem.herokuapp.com/ 
 [screenshot]: img/Screenshot.png "Screen Shot"
 
 ### Data
